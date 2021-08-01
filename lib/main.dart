@@ -16,33 +16,82 @@ class MyApp extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              buildKey(noteNumber: 1, keyColor: Colors.red),
-              buildKey(noteNumber: 2, keyColor: Colors.orange),
-              buildKey(noteNumber: 3, keyColor: Colors.yellow),
-              buildKey(noteNumber: 4, keyColor: Colors.green),
-              buildKey(noteNumber: 5, keyColor: Colors.teal),
-              buildKey(noteNumber: 6, keyColor: Colors.blue),
-              buildKey(noteNumber: 7, keyColor: Colors.purple),
+              buildKey(
+                soundName: 'light-storm.wav',
+                textSound: 'Light Storm',
+                keyColor: Colors.red,
+              ),
+              buildKey(
+                  soundName: 'bamboo.mp3',
+                  textSound: 'Bamboo Wind',
+                  keyColor: Colors.orange),
+              buildKey(
+                  soundName: 'cave.mp3',
+                  textSound: 'Cave Dripping Water',
+                  keyColor: Colors.yellow),
+              buildKey(
+                  soundName: 'fireplace.wav',
+                  textSound: 'Fireplace',
+                  keyColor: Colors.green),
+              buildKey(
+                  soundName: 'forest.wav',
+                  textSound: 'Rainforest',
+                  keyColor: Colors.teal),
+              buildKey(
+                  soundName: 'heavy.mp3',
+                  textSound: 'Strong Storm',
+                  keyColor: Colors.blue),
+              buildKey(
+                  soundName: 'river.wav',
+                  textSound: 'River',
+                  keyColor: Colors.purple),
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            stopSounds();
+          },
+          child: const Icon(Icons.stop),
+          backgroundColor: Colors.red,
         ),
       ),
     );
   }
 }
 
-void playSound(int soundNumber) {
-  final player = AudioCache();
-  player.play('note$soundNumber.wav');
+AudioPlayer loopingPlayer = AudioPlayer();
+stopSounds() {
+  loopingPlayer.stop();
 }
 
-Expanded buildKey({required int noteNumber, required Color keyColor}) {
+Future<void> playSound(String soundName, double volume) async {
+  loopingPlayer.stop();
+  final player = AudioCache();
+  loopingPlayer = await player.loop('$soundName', volume: volume);
+  // player.loop('$soundName').then((pl) {
+  //
+  // });
+}
+
+Expanded buildKey(
+    {required String soundName,
+    required Color keyColor,
+    required String textSound,
+    double volume = 1.0}) {
   return Expanded(
     child: TextButton(
       onPressed: () {
-        playSound(noteNumber);
+        playSound(soundName, volume);
       },
-      child: Text(''),
+      child: Text(
+        textSound,
+        style: TextStyle(
+          fontSize: 22.0,
+          fontWeight: FontWeight.bold,
+          color: Colors.black54,
+        ),
+      ),
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(keyColor),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
