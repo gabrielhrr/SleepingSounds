@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Xylophone App',
+      title: 'Sleeping Sounds',
       home: Scaffold(
         body: SafeArea(
           child: Column(
