@@ -1,16 +1,17 @@
-# xylophone
+# Sleeping Sounds
 
-Xylophone Flutter 2 Project
+Sleeping Sounds is a project thinking through the Flutter Course (https://www.appbrewery.co/) as a challenge for the Xylophone app.
 
-## Getting Started
+The app contais 7 different sounds to listen to when you want to sleep. They are:
 
-This project is a starting point for a Flutter application.
+1 - Light Storm;
+2 - Bamboo Wind;
+3 - Cave Dripping Water;
+4 - Fireplace;
+5 - Rainfores;
+6 - Strong Storm;
+7 - River.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+When you play a sound, it plays in looping.
+When you play another sound, the last one stops playing.
+If you want, you can stop the sound pressing stop button.
